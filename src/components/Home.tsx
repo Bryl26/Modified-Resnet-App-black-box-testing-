@@ -52,9 +52,9 @@ Experimental results demonstrated that the modified ResNet50 outperformed standa
               Keywords: Rice Disease Detection, Deep Learning, Modified ResNet50, Transfer Learning, CNN, Precision Agriculture
             </p>
           </div>
-          <p className="text-sm text-gray-500 mt-6">
-              © 2025 James Bryan Aquino Tababa @ ISU_CYN_Master_Informaation_Techology
-            </p>
+          <p className="text-sm text-gray-500 mt-6 text-center italic">
+  © 2025 James Bryan Aquino Tababa @ ISU CYN | Master of Information Technology
+</p>
         </div>
       </div>
     </div>
