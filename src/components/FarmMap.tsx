@@ -128,6 +128,7 @@ const FarmMap: React.FC = () => {
         ))}
       </MapContainer>
     </div>
+    
   );
 };
 

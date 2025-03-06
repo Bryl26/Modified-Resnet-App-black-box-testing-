@@ -114,6 +114,9 @@ Implement Mulching Practices: Apply mulch to regulate soil temperature, retain m
 Choose Climate-Resilient Crop Varieties: Select crop varieties that are adaptable to a range of temperatures and climatic conditions. Consulting with local agricultural extension services can provide guidance on suitable varieties for specific regions.</p>}
         </ul>
       </div>
+      <p className="text-sm text-gray-500 mt-6 text-center italic">
+  © 2025 James Bryan Aquino Tababa @ ISU CYN | Master of Information Technology
+</p>
     </div>
   );
 };

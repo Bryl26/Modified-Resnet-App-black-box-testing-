@@ -249,6 +249,9 @@ const UserManual: React.FC = () => {
           <p>Thank you for using the Rice Disease Detection System! Your feedback helps us improve and support sustainable farming.</p>
         </div>
       </div>
+      <p className="text-sm text-gray-500 mt-6 text-center italic">
+  © 2025 James Bryan Aquino Tababa @ ISU CYN | Master of Information Technology
+</p>
     </div>
   );
 };

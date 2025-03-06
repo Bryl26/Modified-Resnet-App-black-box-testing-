@@ -102,6 +102,9 @@ const DetectionResults: React.FC<DetectionResultsProps> = ({ result, isProcessin
           </div>
         )}
       </div>
+      <p className="text-sm text-gray-500 mt-6 text-center italic">
+  © 2025 James Bryan Aquino Tababa @ ISU CYN | Master of Information Technology
+</p>
     </div>
   );
 };
