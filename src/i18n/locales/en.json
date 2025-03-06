@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "home": "Home",
+    "calendar": "Calendar",
+    "camera": "Camera",
+    "guide": "Guide",
+    "weather": "Weather",
+    "map": "Map"
+  },
+  "home": {
+    "title": "Rice Disease Detection",
+    "subtitle": "Upload or capture images to detect rice diseases",
+    "trivia": {
+      "title": "Disease Trivia",
+      "readMore": "Read More"
+    }
+  },
+  "weather": {
+    "current": "Current Weather",
+    "forecast": "7-Day Forecast",
+    "humidity": "Humidity",
+    "temperature": "Temperature",
+    "pressure": "Pressure",
+    "wind": "Wind Speed",
+    "feelsLike": "Feels like",
+    "min": "Min",
+    "max": "Max",
+    "precip": "precipitation",
+    "farmingTips": "Farming Weather Tips",
+    "tips": {
+      "sunny": "Perfect conditions for pesticide application and harvesting.",
+      "rain": "Monitor water levels and drainage systems.",
+      "temperature": "Watch for temperature stress in plants."
+    }
+  },
+  "calendar": {
+    "addTask": "Add Task",
+    "newTask": "New Task",
+    "taskTitle": "Title",
+    "taskDate": "Date",
+    "taskType": "Type",
+    "taskDescription": "Description",
+    "setReminder": "Set Reminder",
+    "cancel": "Cancel",
+    "add": "Add",
+    "todayTasks": "Today's Tasks",
+    "types": {
+      "pesticide": "Pesticide Application",
+      "irrigation": "Irrigation",
+      "fertilizer": "Fertilizer Application",
+      "other": "Other"
+    },
+    "days": {
+      "sun": "Sun",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat"
+    }
+  },
+  "map": {
+    "measure": "Measure Area",
+    "stopMeasuring": "Stop Measuring",
+    "clear": "Clear",
+    "area": "Area",
+    "measuredArea": "Measured Area",
+    "size": "Size",
+    "crops": "Crops"
+  },
+  "guide": {
+    "title": "User Guide",
+    "sections": {
+      "gettingStarted": "Getting Started",
+      "takingPhotos": "Taking Photos",
+      "understanding": "Understanding Results",
+      "recommendations": "Following Recommendations"
+    }
+  }
+}
