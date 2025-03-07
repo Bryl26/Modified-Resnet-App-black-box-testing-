@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Home, Calendar, Camera, BookOpen, Cloud, MapPin } from 'lucide-react';
+import { Home, Calendar, Camera, BookOpen, Cloud, MapPin, UsersRound, Info } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface NavigationProps {
@@ -13,11 +13,11 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
 
   const navItems = [
     { id: 'home', icon: Home, label: t('Home') },
-    { id: 'calendar', icon: Calendar, label: t('Calendar') },
-    { id: 'camera', icon: Camera, label: t('Camera') },
-    { id: 'guide', icon: BookOpen, label: t('Guide') },
-    { id: 'weather', icon: Cloud, label: t('Weather') },
-    { id: 'map', icon: MapPin, label: t('Map') }
+    { id: 'calendar', icon: Calendar, label: t('Schedules') },
+    { id: 'camera', icon: Camera, label: t('Scan Rice Leaf') },
+    { id: 'guide', icon: BookOpen, label: t('Quick Assistance') },
+    { id: 'weather', icon: Cloud, label: t('Weather & forecast') },
+    { id: 'map', icon: Info, label: t('About Us') }
   ];
 
   return (

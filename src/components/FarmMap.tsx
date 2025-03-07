@@ -1,135 +1,60 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
-import { Icon } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React from 'react';
+import { ShieldCheck, CloudSun, MapPin, Activity, CheckCircle, RefreshCcw } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { PlusCircle } from 'lucide-react';
 
-interface FarmLocation {
-  id: string;
-  coordinates: [number, number];
-  name?: string;
-  size?: number;
-  crops?: string[];
-}
-
-const FarmMap: React.FC = () => {
+const AboutUs = () => {
   const { t } = useTranslation();
-  const [farmLocations, setFarmLocations] = useState<FarmLocation[]>([]);
-  const [selectedPosition, setSelectedPosition] = useState<[number, number] | null>(null);
-  const [editingFarm, setEditingFarm] = useState<FarmLocation | null>(null);
   
-  const customIcon = new Icon({
-    iconUrl: '/marker-icon.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41]
-  });
-
-  const MapClickHandler: React.FC = () => {
-    useMapEvents({
-      click: (e) => setSelectedPosition([e.latlng.lat, e.latlng.lng])
-    });
-    return null;
-  };
-
-  const addLocationMarker = () => {
-    if (!selectedPosition) return;
-    const newFarm: FarmLocation = {
-      id: crypto.randomUUID(),
-      coordinates: selectedPosition,
-    };
-    setFarmLocations([...farmLocations, newFarm]);
-    setSelectedPosition(null);
-  };
-
-  const updateFarmDetails = () => {
-    if (!editingFarm?.name || !editingFarm.size || !editingFarm.crops) return;
-    setFarmLocations(prev => prev.map(farm => farm.id === editingFarm.id ? editingFarm : farm));
-    setEditingFarm(null);
-  };
-
+  const features = [
+    {
+      icon: <ShieldCheck className="text-green-500 w-12 h-12" />, 
+      title: t('Smart Disease Detection'),
+      description: t('Utilizing advanced ResNet50 CNN models, our system detects rice diseases with high accuracy, providing early warnings and suggested treatments.')
+    },
+    {
+      icon: <CloudSun className="text-blue-500 w-12 h-12" />, 
+      title: t('Weather Forecasting'),
+      description: t('Integrated with real-time weather data, the system provides accurate forecasts, helping farmers make informed decisions on irrigation and disease prevention.')
+    },
+    {
+      icon: <Activity className="text-purple-500 w-12 h-12" />, 
+      title: t('Model Accuracy & Reliability'),
+      description: t('Our AI model is trained with extensive datasets, ensuring precision in disease detection and continuous learning for enhanced reliability.')
+    },
+    {
+      icon: <RefreshCcw className="text-orange-500 w-12 h-12" />, 
+      title: t('Maintainability & Scalability'),
+      description: t('Designed with scalability in mind, our system ensures easy maintenance, seamless updates, and adaptability to future enhancements.')
+    },
+    {
+      icon: <MapPin className="text-red-500 w-12 h-12" />, 
+      title: t('Farm Mapping & Nearby Disease Alerts'),
+      description: t('Interactive farm mapping allows users to view disease occurrences in nearby farms, learn from other farmers’ actions, and take proactive measures.')
+    },
+    {
+      icon: <CheckCircle className="text-yellow-500 w-12 h-12" />, 
+      title: t('User-Centric & Actionable Insights'),
+      description: t('Our system offers actionable insights, guiding farmers with preventive measures and best practices for sustainable farming.')
+    }
+  ];
+  
   return (
-    <div className="relative">
-      <div className="absolute top-4 left-4 z-[1000] bg-white rounded-lg shadow-md p-3 space-y-2">
-        {selectedPosition && (
-          <button
-            onClick={addLocationMarker}
-            className="flex items-center space-x-2 px-3 py-2 rounded-md bg-blue-500 text-white w-full"
-          >
-            <PlusCircle className="h-4 w-4" />
-            <span>{t('map.addLocationMarker')}</span>
-          </button>
-        )}
-        {editingFarm && (
-          <>
-            <input
-              type="text"
-              placeholder="Farm Name"
-              value={editingFarm.name || ''}
-              onChange={(e) => setEditingFarm({ ...editingFarm, name: e.target.value })}
-              className="w-full p-2 border rounded"
-            />
-            <input
-              type="text"
-              placeholder="Size (ha)"
-              value={editingFarm.size || ''}
-              onChange={(e) => setEditingFarm({ ...editingFarm, size: parseFloat(e.target.value) || 0 })}
-              className="w-full p-2 border rounded"
-            />
-            <input
-              type="text"
-              placeholder="Crops (comma separated)"
-              value={editingFarm.crops?.join(', ') || ''}
-              onChange={(e) => setEditingFarm({ ...editingFarm, crops: e.target.value.split(',').map(c => c.trim()) })}
-              className="w-full p-2 border rounded"
-            />
-            <button
-              onClick={updateFarmDetails}
-              className="flex items-center space-x-2 px-3 py-2 rounded-md bg-green-500 text-white w-full"
-            >
-              <PlusCircle className="h-4 w-4" />
-              <span>{t('map.saveDetails')}</span>
-            </button>
-          </>
-        )}
-      </div>
-      
-      <MapContainer
-        center={[16.0, 121.0]}
-        zoom={13}
-        className="h-[600px] w-full rounded-lg shadow-md"
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <MapClickHandler />
-        {farmLocations.map(farm => (
-          <Marker
-            key={farm.id}
-            position={farm.coordinates}
-            icon={customIcon}
-            eventHandlers={{
-              click: () => setEditingFarm(farm)
-            }}
-          >
-            <Popup>
-              {farm.name ? (
-                <div className="p-3">
-                  <h3 className="font-semibold text-lg">{farm.name}</h3>
-                  <p className="text-sm text-gray-600">{t('map.size')}: {farm.size} ha</p>
-                  <p className="text-sm text-gray-600">{t('map.crops')}: {farm.crops?.join(', ')}</p>
-                </div>
-              ) : (
-                <span>{t('map.clickToEdit')}</span>
-              )}
-            </Popup>
-          </Marker>
+    <div className="container mx-auto px-6 py-10">
+      <h1 className="text-3xl font-bold text-center mb-8">{t('About Our Smart Farming System')}</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature, index) => (
+          <div key={index} className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
+            {feature.icon}
+            <h2 className="text-xl font-semibold mt-4">{feature.title}</h2>
+            <p className="text-gray-600 mt-2">{feature.description}</p>
+          </div>
         ))}
-      </MapContainer>
+      </div>
+      <p className="text-sm text-gray-500 mt-6 text-center italic">
+        © 2025 James Bryan Aquino Tababa @ ISU CYN | Master of Information Technology
+      </p>
     </div>
-    
   );
 };
 
-export default FarmMap;
+export default AboutUs;
