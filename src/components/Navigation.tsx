@@ -36,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
     { id: 'calendar', icon: Calendar, label: t('Schedules') },
     { id: 'camera', icon: Camera, label: t('Scan Rice Leaf') },
     { id: 'guide', icon: BookOpen, label: t('Quick Assistance') },
-    { id: 'weather', icon: Cloud, label: t('Weather & Forecast') },
+    { id: 'weather', icon: Cloud, label: t('Weather Forecast') },
     { id: 'map', icon: MapPin, label: t('About Us') }
   ];
 
