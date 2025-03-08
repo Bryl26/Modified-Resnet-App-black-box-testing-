@@ -1,12 +1,12 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, LayersControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useState } from 'react';
 import { Brain, Database, Award, ShieldCheck } from 'lucide-react';
-import { Icon } from 'leaflet';
 
 export default function HomePage() {
+  const { BaseLayer } = LayersControl;
   const [farmlands, setFarmlands] = useState([
-    { id: 1, lat: 17.1200, lng: 121.7540, name: "Bartolome Farm", disease: "Bacterial Leaf Blight", action: "Applied fungicide" },
+    {  id: 1, lat: 17.1200, lng: 121.7540, name: "Bartolome Farm", disease: "Bacterial Leaf Blight", action: "Applied fungicide" },
     { id: 2, lat: 17.1245, lng: 121.7530, name: "Guzman Farm", disease: "Rice Blast", action: "Implemented crop rotation" },
     { id: 3, lat: 17.0731, lng: 121.7855, name: "Asis Farm", disease: "Brown Spot", action: "Used resistant varieties" },
     { id: 4, lat: 17.0851, lng: 121.7805, name: "Fernandez Farm", disease: "Sheath Blight", action: "Improved drainage" },
@@ -31,7 +31,7 @@ export default function HomePage() {
     { id: 23, lat: 16.9783, lng: 121.7132, name: "Rivera Farm", disease: "Tungro", action: "Controlled vector populations" },
     { id: 23, lat: 16.9783, lng: 121.7102, name: "Cruz Farm", disease: "False Smut", action: "Avoided excessive nitrogen use" },
     { id: 25, lat: 16.9783, lng: 121.7342, name: "Santiago Farm", disease: "Bacterial Leaf Blight", action: "Used certified disease-free seeds" }
-  ]);
+ ]);
 
   const handleDragEnd = (event, id) => {
     const { lat, lng } = event.target.getLatLng();
@@ -44,7 +44,60 @@ export default function HomePage() {
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold text-green-700 mb-4">Rice Disease Detection</h1>
       <MapContainer center={[17.15, 121.6]} zoom={10} className="h-96 w-full rounded-lg border">
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <LayersControl position="topright">
+          <BaseLayer checked name="OpenStreetMap Standard">
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          </BaseLayer>
+          <BaseLayer name="Imagery">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Imagery Hybrid">
+            <TileLayer url="https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Topographic">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Streets">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Navigation">
+            <TileLayer url="https://services.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Street (Night)">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Terrain with Labels">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Dark Grey Canvas">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Outdoor">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Outdoor_Map/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Oceans">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="National Geographic">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Charted Territory Map">
+            <TileLayer url="https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png" />
+          </BaseLayer>
+          <BaseLayer name="Navigation (Dark)">
+            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Nova Map">
+            <TileLayer url="https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.png" />
+          </BaseLayer>
+          <BaseLayer name="Firefly Imagery Hybrid">
+            <TileLayer url="https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+          <BaseLayer name="Enhanced Contrast Dark Map">
+            <TileLayer url="https://server.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}" />
+          </BaseLayer>
+        </LayersControl>
+
         {farmlands.map((farm) => (
           <Marker 
             key={farm.id} 
@@ -60,37 +113,6 @@ export default function HomePage() {
           </Marker>
         ))}
       </MapContainer>
-      
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        <div className="flex items-start space-x-4">
-          <ShieldCheck className="h-8 w-8 text-red-600 flex-shrink-0" />
-          <div>
-            <h3 className="font-semibold text-gray-800">Advanced Detection</h3>
-            <p className="text-sm text-gray-600">Enhanced ResNet50 architecture for classifying 14 distinct rice diseases</p>
-          </div>
-        </div>
-        <div className="flex items-start space-x-4">
-          <Brain className="h-8 w-8 text-blue-600 flex-shrink-0" />
-          <div>
-            <h3 className="font-semibold text-gray-800">Intelligent Analysis</h3>
-            <p className="text-sm text-gray-600">Optimized feature extraction and classification accuracy</p>
-          </div>
-        </div>
-        <div className="flex items-start space-x-4">
-          <Database className="h-8 w-8 text-purple-600 flex-shrink-0" />
-          <div>
-            <h3 className="font-semibold text-gray-800">Transfer Learning</h3>
-            <p className="text-sm text-gray-600">Pre-trained weights for improved accuracy with limited data</p>
-          </div>
-        </div>
-        <div className="flex items-start space-x-4">
-          <Award className="h-8 w-8 text-yellow-600 flex-shrink-0" />
-          <div>
-            <h3 className="font-semibold text-gray-800">High Accuracy</h3>
-            <p className="text-sm text-gray-600">99% classification accuracy in experimental results</p>
-          </div>
-        </div>
-      </div>
 
       <p className="text-sm text-gray-500 mt-6 text-center italic">
         © 2025 James Bryan Aquino Tababa @ ISU CYN | Master of Information Technology
