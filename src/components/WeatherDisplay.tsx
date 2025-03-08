@@ -90,28 +90,28 @@ const WeatherDisplay = () => {
           <li className="flex items-center cursor-pointer" onClick={() => setTips({ ...tips, sunny: !tips.sunny })}>
             <Sun className="text-yellow-500 mr-2" /> {t('Weather Tips for Dry Seasons 🌞')}
           </li>
-          {tips.sunny && <p className="ml-6 text-gray-600">Weather Tips for Dry Seasons 🌞
-Plant Drought-Resistant Varieties: Opt for crop varieties that are tolerant to drought conditions. For example, rice varieties like PSB Rc14 (Rio Grande) and PSB Rc68 (Sacobia) are suitable for rainfed lowlands and can endure dry spells.
-Adopt Water-Saving Irrigation Techniques: Implement methods such as Alternate Wetting and Drying (AWD) and Low-Cost Drip Irrigation Systems (LDIS) to conserve water. These techniques ensure crops receive adequate moisture while reducing overall water usage. 
-Diversify Crop Selection: During anticipated dry periods, consider planting crops with shorter gestation periods and lower water requirements, such as corn, beans, and certain root vegetables. This strategy can help maintain yields despite limited water availability. 
+          {tips.sunny && <p className="ml-6 text-gray-600">
+<li><strong>Plant Drought-Resistant Crops:</strong> Opt for varieties like PSB Rc14 (Rio Grande) & PSB Rc68 (Sacobia).🌾</li>
+              <li><strong>Use Water-Saving Irrigation:</strong> Apply AWD or Low-Cost Drip Systems to conserve water.💧</li>
+              <li><strong>Diversify Crops:🌽</strong> Grow short-gestation, low-water crops like corn, beans, & root vegetables.</li> 
 </p>}
           
           <li className="flex items-center cursor-pointer" onClick={() => setTips({ ...tips, rain: !tips.rain })}>
             <CloudRain className="text-blue-500 mr-2" /> {t('Weather Tips for Rainy Seasons 🌧️')}
           </li>
           {tips.rain && <p className="ml-6 text-gray-600">
-Select Flood-Tolerant Crop Varieties: Choose crops that can withstand heavy rainfall and potential flooding. For instance, rice varieties such as PSB Rc18 (Ala) and NSIC Rc194 (Submarino 1) are known for their resilience to submergence, surviving up to 5-14 days underwater. 
-Improve Field Drainage: Implement proper drainage systems, like ditches or furrows, to prevent waterlogging, which can lead to root rot and other diseases. Effective drainage ensures excess water is efficiently directed away from crop fields.
-Utilize Cover Crops: Planting cover crops, such as legumes like cowpeas and mung beans, can help mitigate soil erosion caused by heavy rains. Their root systems enhance soil structure and promote better water infiltration. 
-Employ Protective Structures: Use shade nets and windbreakers to shield crops from heavy rainfall and strong winds. Shade nets provide a barrier against direct rain impact, while windbreakers, comprising trees or shrubs, reduce wind speed and protect crops from potential damage.</p>}
+<li><strong>Flood-Tolerant Crops:</strong> Choose resilient rice varieties like PSB Rc18 (Ala) & NSIC Rc194 (Submarino 1).🌾</li>
+              <li><strong>Improve Drainage:</strong> Use ditches or furrows to prevent waterlogging and root diseases.🌊</li>
+              <li><strong>Utilize Cover Crops:</strong> Grow legumes like cowpeas & mung beans to prevent soil erosion.🌿</li>
+              <li><strong>Employ Protective Structures:</strong> Use shade nets & windbreakers to shield crops from rain & wind.🚜</li></p>}
           
           <li className="flex items-center cursor-pointer" onClick={() => setTips({ ...tips, temperature: !tips.temperature })}>
             <Thermometer className="text-red-500 mr-2" /> {t('Weather Tips for Changing Temperatures 🌡️')}
           </li>
           {tips.temperature && <p className="ml-6 text-gray-600">
-Monitor Weather Forecasts: Stay updated with local weather reports to anticipate temperature fluctuations. Timely information allows for proactive measures, such as adjusting planting schedules or implementing protective strategies.
-Implement Mulching Practices: Apply mulch to regulate soil temperature, retain moisture, and suppress weed growth. Mulching acts as an insulating layer, protecting plant roots from extreme temperature variations.
-Choose Climate-Resilient Crop Varieties: Select crop varieties that are adaptable to a range of temperatures and climatic conditions. Consulting with local agricultural extension services can provide guidance on suitable varieties for specific regions.</p>}
+<li><strong>Monitor Weather Forecasts:</strong> Stay updated to anticipate temperature fluctuations.🌦️</li>
+              <li><strong>Implement Mulching Practices:</strong> Use mulch to regulate soil temperature & retain moisture.🍂</li>
+              <li><strong>Choose Climate-Resilient Crops:</strong> Opt for varieties adaptable to temperature variations.🌾</li></p>}
         </ul>
       </div>
       <p className="text-sm text-gray-500 mt-6 text-center italic">
